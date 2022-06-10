@@ -15,7 +15,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand mt-2">
         <img src="images/rinaldi.png" height="40">

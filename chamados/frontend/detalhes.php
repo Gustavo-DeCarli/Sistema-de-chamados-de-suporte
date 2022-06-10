@@ -1,8 +1,3 @@
-<?php
-$id = $_POST["id"];
-?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -52,6 +47,7 @@ $id = $_POST["id"];
             <table class="table rounded-bottom">
                 <?php
                 require "conn.php";
+                $id = $_POST["id"];
                 $connection = DB::getInstance();
                 $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=2");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
