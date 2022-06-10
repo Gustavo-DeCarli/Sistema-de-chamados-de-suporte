@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+nav {
+    background-color: rgb(0, 0, 0);
+}
+
+body {
+    background-color: rgb(255, 53, 53);
+}
+
+.tabela {
+    padding-top: 40px;
+}
+
+#lista {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: auto;
+    background-color: white;
+}
+
+#tabela{
+    width: 60%;
+    padding-top: 30px;
+}
+
+#navi{
+    font-family: 'Roboto Condensed', sans-serif;
+}
