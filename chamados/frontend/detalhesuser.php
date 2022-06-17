@@ -39,9 +39,7 @@
     <div id="tabela" class="mx-auto">
         <nav class="navbar bg-light rounded-top">
             <form class="container-fluid justify-content-start">
-                <a class="text-light btn btn-success me-2" href="admin.php" style='text-decoration: none'>Voltar</a>
-                <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">Alterar status</button>
-                <a class="btn btn-success me-2" type="button" href="../backend/finalizar.php">Finalizar chamado</a>
+                <a class="text-light btn btn-success me-2" href="user.php" style='text-decoration: none'>Voltar</a>
             </form>
         </nav>
         <div id="lista">
@@ -50,7 +48,7 @@
                 require "conn.php";
                 $id = $_POST["id"];
                 $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=$id");
+                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=2");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
                 $dados = $consulta->fetchAll();
                 foreach ($dados as $dados2) {
@@ -94,34 +92,6 @@
             </table>
         </div>
     </div>
-
-
-
-
-
-
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="idf" value="<?php {$dados2['ID']}?>"/>
-                    <label for="status">Status:</label>
-                    <select class="form-select" name="status" id="status" form="statusform">
-                        <option value="Em Andamento">Em andamento</option>
-                        <option value="Aberto">Aberto</option>
-                    </select>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="salvar1" type="button" class="btn btn-success">Salvar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 </body>
 
 </html>
