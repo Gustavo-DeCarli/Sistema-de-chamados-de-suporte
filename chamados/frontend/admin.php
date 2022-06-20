@@ -23,10 +23,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-light" aria-current="page" href="#">Chamados</a>
+            <a class="nav-link text-light" aria-current="page" href="admin.php">Chamados</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="#">Estatísticas</a>
+            <a class="nav-link text-light" href="estatisticas.php">Estatísticas</a>
           </li>
           <li class="nav-item px-2">
             <button type="submit" class="btn btn-danger p-1 mt-1 px-2">Logout</button>
@@ -54,7 +54,7 @@
         <?php
         require "conn.php";
         $connection = DB::getInstance();
-        $stmt = $connection->query("SELECT * from chamados");
+        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $dados11 = $stmt->fetchAll();
         foreach ($dados11 as $dados111) {

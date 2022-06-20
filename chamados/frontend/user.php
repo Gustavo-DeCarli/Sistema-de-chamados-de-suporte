@@ -1,3 +1,8 @@
+<?php
+$userid = 1;
+$nome = "Gustavo";
+$setor ="RH";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +39,7 @@
     <div class="tabela container container-fluid position-static">
         <nav class="navbar bg-light rounded-top">
             <form class="container-fluid justify-content-start">
-                <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">Novo chamado</button>
+                <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">Novo chamado</button>
             </form>
         </nav>
         <table id='chamados' class='table bg-light'>
@@ -54,7 +59,7 @@
                 <?php
                 require "conn.php";
                 $connection = DB::getInstance();
-                $stmt = $connection->query("SELECT * from chamados where userid=1");
+                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where userid=1");
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $dados11 = $stmt->fetchAll();
                 foreach ($dados11 as $dados111) {
@@ -76,7 +81,7 @@
         </table>
 
 
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -84,9 +89,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id="id" />
-                        <label for="cars">Tipo de problema:</label>
-                        <select class="form-select" name="status" id="status" form="statusform">
+                        <input type="hidden" id='iduser' value="<?php echo $userid ?>" />
+                        <input type="hidden" id='nomeuser' value="<?php echo $nome ?>" />
+                        <input type="hidden" id='setoruser' value="<?php echo $setor ?>" />
+                        <label for="problema">Tipo de problema:</label>
+                        <select class="form-select" name="problema" id="problema" form="statusform">
                             <option value="">Selecione</option>
                             <option value="Sistema">Sistema</option>
                             <option value="Equipamento">Equipamento</option>
@@ -94,17 +101,18 @@
                             <option value="Outros">Outros</option>
                         </select>
                         <div class="mb-3 mt-2">
-                            <label for="item" class="form-label">Resumo/Descrição</label>
-                            <textarea type="text" class="form-control" rows="4" id="descrição" placeholder="Digite aqui"></textarea>
+                            <label for="descricao" class="form-label">Resumo/Descrição</label>
+                            <textarea type="text" class="form-control" rows="4" id="descricao" placeholder="Digite aqui"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button id="salvar1" type="button" class="btn btn-success">Salvar</button>
+                            <button id="salvar2" type="button" class="btn btn-success">Salvar</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
 
 
 </body>

@@ -6,7 +6,7 @@ try {
     $s = new Andamento();
     $s->setid($_POST['idf']);
     $s->setStatus($_POST['status']);
-    $s->inserir();
+    $s->InserirStatus();
     print $s;
 }catch(Exception $e){
     print json_encode([

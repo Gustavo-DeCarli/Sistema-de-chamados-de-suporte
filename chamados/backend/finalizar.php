@@ -2,9 +2,8 @@
 require "funcoes.php";
 
 try {
-    
     $s = new Andamento();
-    $s->setid($_POST['idf']);
+    $s->setId($_POST['ff']);
     $s->finalizar();
     print $s;
 }catch(Exception $e){

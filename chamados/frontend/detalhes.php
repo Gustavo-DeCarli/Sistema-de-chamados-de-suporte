@@ -1,3 +1,6 @@
+<?php
+$id = $_POST["id"];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -41,14 +44,13 @@
             <form class="container-fluid justify-content-start">
                 <a class="text-light btn btn-success me-2" href="admin.php" style='text-decoration: none'>Voltar</a>
                 <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">Alterar status</button>
-                <a class="btn btn-success me-2" type="button" href="../backend/finalizar.php">Finalizar chamado</a>
+                <button class="btn btn-success me-2" type="button" id="ff" value="<?php echo $id ?>">Finalizar chamado</button>
             </form>
         </nav>
         <div id="lista">
             <table class="table rounded-bottom">
                 <?php
                 require "conn.php";
-                $id = $_POST["id"];
                 $connection = DB::getInstance();
                 $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=$id");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
@@ -108,7 +110,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="idf" value="<?php {$dados2['ID']}?>"/>
+                    <input type="hidden" id="idf" value="<?php echo $dados2['ID'] ?>" />
                     <label for="status">Status:</label>
                     <select class="form-select" name="status" id="status" form="statusform">
                         <option value="Em Andamento">Em andamento</option>
@@ -121,6 +123,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 </body>
 
