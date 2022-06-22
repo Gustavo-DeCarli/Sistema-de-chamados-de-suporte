@@ -55,6 +55,8 @@
         <h2 class="text-light">Estatísticas de chamados</h2>
     </div>
 
+
+
     <div id="donut-chart"></div>
 
         <?php 
@@ -77,7 +79,7 @@
         $aberto->setFetchMode(PDO::FETCH_ASSOC);
         $r = $aberto->fetchAll();
         foreach($r as $vr3);
-                echo "<script> var chart = bb.generate({ data: { columns: [ ['Em Andamento', {$vr['valor']}], ['Aberto', {$vr2['valor']}], ['Finalizado', {$vr3['valor']}],], type: 'donut', onclick: function (d, i) {console.log('onclick', d, i);}, onover: function (d, i) {console.log('onover', d, i);},onout: function (d, i) {console.log('onout', d, i);},},donut: {title: '',},bindto: '#donut-chart',});</script>"
+                echo "<script> var chart = bb.generate({ data: { columns: [ ['Em Andamento', {$vr['valor']}], ['Aberto', {$vr2['valor']}], ['Finalizado', {$vr3['valor']}],], type: 'donut', onclick: function (d, i) {console.log('onclick', d, i);}, onover: function (d, i) {console.log('onover', d, i);},onout: function (d, i) {console.log('onout', d, i);},},donut: {title: '',},bindto: '#donut-chart',});</script>";
         ?>
 
 </body>
