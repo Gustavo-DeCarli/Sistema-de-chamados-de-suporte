@@ -52,7 +52,7 @@
       <tbody>
 
         <?php
-        require "conn.php";
+        require "../backend/conn.php";
         $connection = DB::getInstance();
         $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@
           $table .= "<td>{$dados111['setor']}</td>";
           $table .= "<td>{$dados111['problema']}</td>";
           $table .= "<td>{$dados111['status']}</td>";
-          $table .= "<td>{$dados111['descricao']}</td>";
+          $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
           $table .= "<td>{$dados111['data']}</td>";
           $table .= "<td><form action='detalhes.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
           $table .= "</tr>";

@@ -11,4 +11,3 @@ class DB {
         return DB::$conn;
     }
 }
-?>

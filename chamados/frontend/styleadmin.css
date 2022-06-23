@@ -32,3 +32,11 @@ body {
 #nave{
     font-size: 30px;
 }
+
+.grafico{
+    width: 55%;
+    height: 58%;
+    background-color: white;
+    border-radius: 4px;
+    margin: 0 auto;
+}

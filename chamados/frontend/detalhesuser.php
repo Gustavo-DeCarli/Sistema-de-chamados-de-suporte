@@ -1,3 +1,10 @@
+<?PHP
+// if ($_POST['id'] != '') {
+$id = $_POST["id"];
+// } else {
+//     header('Location: user.php');
+// }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -45,10 +52,9 @@
         <div id="lista">
             <table class="table rounded-bottom">
                 <?php
-                require "conn.php";
-                $id = $_POST["id"];
+                require "../backend/conn.php";
                 $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=2");
+                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=$id");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
                 $dados = $consulta->fetchAll();
                 foreach ($dados as $dados2) {
@@ -82,7 +88,7 @@
                     $table .= "</td>";
                     $table .= "</tr>";
                     $table .= "<tr>";
-                    $table .= "<td id='desc'>";
+                    $table .= "<td id='desc' class='text-break'>";
                     $table .= "Descrição: {$dados2["descricao"]}";
                     $table .= "</td>";
                     $table .= "</tr>";

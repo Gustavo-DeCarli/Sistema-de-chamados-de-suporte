@@ -1,7 +1,7 @@
 <?php
 $userid = 1;
 $nome = "Gustavo";
-$setor ="RH";
+$setor = "RH";
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +57,7 @@ $setor ="RH";
             <tbody>
 
                 <?php
-                require "conn.php";
+                require "../backend/conn.php";
                 $connection = DB::getInstance();
                 $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where userid=1");
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@ $setor ="RH";
                     $table .= "<td>{$dados111['setor']}</td>";
                     $table .= "<td>{$dados111['problema']}</td>";
                     $table .= "<td>{$dados111['status']}</td>";
-                    $table .= "<td>{$dados111['descricao']}</td>";
+                    $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
                     $table .= "<td>{$dados111['data']}</td>";
                     $table .= "<td><form action='detalhesuser.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
                     $table .= "</tr>";
@@ -101,7 +101,7 @@ $setor ="RH";
                             <option value="Outros">Outros</option>
                         </select>
                         <div class="mb-3 mt-2">
-                            <label for="descricao" class="form-label">Resumo/Descrição</label>
+                            <label for="descricao" class="form-label">Resumo/Descrição(Campo obrigatório)</label>
                             <textarea type="text" class="form-control" rows="4" id="descricao" placeholder="Digite aqui"></textarea>
                         </div>
                         <div class="modal-footer">
