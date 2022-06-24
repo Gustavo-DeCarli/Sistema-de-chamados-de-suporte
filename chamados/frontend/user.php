@@ -39,7 +39,6 @@ $setor = "RH";
         <table id='chamados' class='table bg-light'>
             <thead>
                 <tr>
-                    <th scope='col'>ID</th>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Setor</th>
                     <th scope='col'>Tipo de problema</th>
@@ -52,13 +51,12 @@ $setor = "RH";
                 <?php
                 require "../backend/conn.php";
                 $connection = DB::getInstance();
-                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where userid=1");
+                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where userid=1 ORDER BY id DESC");
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $dados11 = $stmt->fetchAll();
                 foreach ($dados11 as $dados111) {
                     $table = "";
                     $table .= "<tr>";
-                    $table .= "<th scope='row' id='{$dados111['ID']}'>{$dados111['ID']}</th>";
                     $table .= "<td>{$dados111['nome']}</td>";
                     $table .= "<td>{$dados111['setor']}</td>";
                     $table .= "<td>{$dados111['problema']}</td>";

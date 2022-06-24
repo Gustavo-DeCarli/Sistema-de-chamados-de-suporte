@@ -47,10 +47,11 @@
         <?php
         require "../backend/conn.php";
         $connection = DB::getInstance();
-        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados");
+        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados ORDER BY id DESC");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $dados11 = $stmt->fetchAll();
         foreach ($dados11 as $dados111) {
+          krsort($dados111);
           $table = "";
           $table .= "<tr>";
           $table .= "<th scope='row' id='{$dados111['ID']}'>{$dados111['ID']}</th>";
