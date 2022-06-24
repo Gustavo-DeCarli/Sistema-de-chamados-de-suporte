@@ -1,14 +1,13 @@
+<!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js" integrity="sha256-cHVO4dqZfamRhWD7s4iXyaXWVK10odD+qp4xidFzqTI=" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
-
+  <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
 </head>
-
 <body class="fundo">
   <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -30,15 +29,9 @@
       </div>
     </div>
   </nav>
-
-
-
   <div class="col-xs-12 text-center mt-5">
     <h2 class="text-light">Estatísticas de chamados</h2>
   </div>
-
-
-
   <div class='grafico'>
     <canvas id="myChart">
       <script>
@@ -72,12 +65,12 @@
               label: 'Nº de chamados',
               data: [<?php echo json_encode($vr3['valor']) ?>, <?php echo json_encode($vr['valor']) ?>, <?php echo json_encode($vr2['valor']) ?>],
               backgroundColor: [
-                'rgba(26, 150, 37, 0.8)',
-                'rgba(202, 108, 0, 0.8)',
-                'rgba(221, 25, 25, 0.8)'
+                'rgba(26, 150, 37, 1)',
+                'rgba(202, 108, 0, 1)',
+                'rgba(221, 25, 25, 1)'
               ],
               borderColor: [
-
+                'rgba(0,0,0, 1)'
               ],
               borderWidth: 1
             }]

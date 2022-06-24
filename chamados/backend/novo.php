@@ -16,7 +16,7 @@ try {
     $s->NovoChamado();
     print $s;
 }else{
-    echo "<script>window.alert('sometext')</script>";
+    die;
 }
 }catch(Exception $e){
     print json_encode([
