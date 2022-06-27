@@ -4,7 +4,7 @@ let modal2 = null
 let btnSalvar2 = null
 
 onload = async () => {
-modal2 = new bootstrap.Modal(document.getElementById("exampleModal2"))
+    modal2 = new bootstrap.Modal(document.getElementById("exampleModal2"))
     btnSalvar2 = document.getElementById("salvar2")
     btnSalvar2.addEventListener("click", async () => {
         const iduser = document.getElementById("iduser").value
@@ -26,6 +26,6 @@ modal2 = new bootstrap.Modal(document.getElementById("exampleModal2"))
             body
         })
         modal2.hide();
-        window.location.href = "user.php";
+       window.location.href = "user.php";
     })
 }
