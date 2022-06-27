@@ -3,7 +3,8 @@ require "funcoes.php";
 
 try {
     $s = new Andamento();
-    $s->setId($_POST['ff']);
+    $s->setId($_POST['idf2']);
+    $s->setConclusao($_POST['conclusao']);
     $s->finalizar();
     print $s;
 }catch(Exception $e){

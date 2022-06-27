@@ -1,4 +1,4 @@
-const baseUrl = `//localhost/chamados/backend/`
+const baseUrl = `//192.168.0.117/backend/`
 
 let modal2 = null
 let btnSalvar2 = null
@@ -22,6 +22,7 @@ modal2 = new bootstrap.Modal(document.getElementById("exampleModal2"))
 
         const response = await fetch(`${baseUrl}novo.php`, {
             method: "POST",
+            mode: 'no-cors',
             body
         })
         modal2.hide();

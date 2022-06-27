@@ -8,7 +8,11 @@ class Andamento
     private $setor = "";
     private $problema = "";
     private $descricao = "";
+    private $data = "";
     private $status = "";
+    private $previsao = "";
+    private $atendente = "";
+    private $conclusao = "";
 
     function __toString()
     {
@@ -20,7 +24,10 @@ class Andamento
             "setor" => $this->setor,
             "problema" => $this->problema,
             "descricao" => $this->descricao,
-            "data" => $this->data
+            "data" => $this->data,
+            "atendente" => $this->atendente,
+            "previsao" => $this->previsao,
+            "conclusao" => $this->conclusao
         ]);
     }
 
@@ -56,6 +63,18 @@ class Andamento
     {
         $this->data = $v;
     }
+    function setAtendente($v)
+    {
+        $this->atendente = $v;
+    }
+    function setPrevisao($v)
+    {
+        $this->previsao = $v;
+    }
+    function setConclusao($v)
+    {
+        $this->conclusao = $v;
+    }
 
     function InserirStatus()
     {
@@ -64,10 +83,12 @@ class Andamento
 
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("UPDATE chamados SET STATUS=:status WHERE id=:id");
+            $consulta = $connection->prepare("UPDATE chamados SET STATUS=:status, atendente=:atendente, previsao=:previsao WHERE id=:id");
             $consulta->execute([
                 ':id' => $this->id,
                 ':status' => $this->status,
+                ':atendente' => $this->atendente,
+                ':previsao' => $this->previsao
             ]);
             $consulta = $connection->prepare("COMMIT;");
             $consulta->execute();
@@ -110,8 +131,11 @@ class Andamento
         try {
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("UPDATE chamados SET status='Finalizado' WHERE id = :id");
-            $consulta->execute([':id' => $this->id]);
+            $consulta = $connection->prepare("UPDATE chamados SET status='Finalizado',conclusao=:conclusao WHERE id = :id");
+            $consulta->execute([
+                ':id' => $this->id,
+                ':conclusao' => $this->conclusao
+            ]);
             $consulta = $connection->prepare("COMMIT;");
             $consulta->execute();
         } catch (Exception $e) {

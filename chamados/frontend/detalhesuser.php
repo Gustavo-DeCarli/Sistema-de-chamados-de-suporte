@@ -82,6 +82,21 @@ $id = $_POST["id"];
                     $table .= "Descrição: {$dados2["descricao"]}";
                     $table .= "</td>";
                     $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Previsão de Atendimento: {$dados2["previsao"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Atendente: {$dados2["atendente"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Conclusão: {$dados2["conclusao"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
                     echo $table;
                 }
                 ?>

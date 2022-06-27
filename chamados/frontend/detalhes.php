@@ -43,7 +43,7 @@ if ($_POST['id'] != '') {
             <form class="container-fluid justify-content-start">
                 <a class="text-light btn btn-success me-2" href="admin.php" style='text-decoration: none'>Voltar</a>
                 <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">Alterar status</button>
-                <button class="btn btn-success me-2" type="button" id="ff" value="<?php echo $id ?>">Finalizar chamado</button>
+                <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3">Finalizar chamado</button>
             </form>
         </nav>
         <div id="lista">
@@ -51,7 +51,7 @@ if ($_POST['id'] != '') {
                 <?php
                 require "../backend/conn.php";
                 $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=$id");
+                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao, atendente, conclusao from chamados where id=$id");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
                 $dados = $consulta->fetchAll();
                 foreach ($dados as $dados2) {
@@ -89,6 +89,21 @@ if ($_POST['id'] != '') {
                     $table .= "Descrição: {$dados2["descricao"]}";
                     $table .= "</td>";
                     $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Previsão de Atendimento: {$dados2["previsao"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Atendente: {$dados2["atendente"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
+                    $table .= "<tr>";
+                    $table .= "<td>";
+                    $table .= "Conclusão: {$dados2["conclusao"]}";
+                    $table .= "</td>";
+                    $table .= "</tr>";
                     echo $table;
                 }
                 ?>
@@ -105,17 +120,48 @@ if ($_POST['id'] != '') {
                 <div class="modal-body">
                     <input type="hidden" id="idf" value="<?php echo $dados2['ID'] ?>" />
                     <label for="status">Status:</label>
-                    <select class="form-select" name="status" id="status" form="statusform">
+                    <select class="form-select mt-1" name="status" id="status" form="statusform">
                         <option value="Em Andamento">Em andamento</option>
                         <option value="Aberto">Aberto</option>
                     </select>
+                    <label for="atendente">Atendente:</label>
+                    <select class="form-select mt-1" name="atendente" id="atendente" form="statusform">
+                        <option value="Juliano">Juliano</option>
+                        <option value="Anderson">Anderson</option>
+                        <option value="Anelise">Anelise</option>
+                        <option value="Gustavo">Gustavo</option>
+                    </select>
+                    <label for="previsao">Previsão de Atendimento:</label>
+                    <input class="form-control mt-1" type="date" id="previsao"/>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button id="salvar1" type="button" class="btn btn-success">Salvar</button>
+                        <button id="Salvar" type="button" class="btn btn-success">Salvar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Finalizar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="idf2" value="<?php echo $dados2['ID'] ?>" />
+                    <label for="conclusao">Conclusão do atendimento:</label>
+                    <input class="form-control mt-1" type="text" id="conclusao"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button id="ff" type="button" class="btn btn-success">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>

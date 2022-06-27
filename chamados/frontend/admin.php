@@ -41,13 +41,15 @@
           <th scope='col'>Status</th>
           <th scope='col'>Descrição</th>
           <th scope='col'>Data/hora</th>
+          <th scope='col'>Previsão de Atendimento</th>
+          <th scope='col'>Atendente</th>
         </tr>
       </thead>
       <tbody>
         <?php
         require "../backend/conn.php";
         $connection = DB::getInstance();
-        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados ORDER BY id DESC");
+        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $dados11 = $stmt->fetchAll();
         foreach ($dados11 as $dados111) {
@@ -61,6 +63,8 @@
           $table .= "<td>{$dados111['status']}</td>";
           $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
           $table .= "<td>{$dados111['data']}</td>";
+          $table .= "<td>{$dados111['previsao']}</td>";
+          $table .= "<td>{$dados111['atendente']}</td>";
           $table .= "<td><form action='detalhes.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
           $table .= "</tr>";
           echo $table;
