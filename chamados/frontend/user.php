@@ -5,6 +5,7 @@ $setor = "RH";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Teste</title>
@@ -14,6 +15,7 @@ $setor = "RH";
     <script src="scriptuser.js" type="text/javascript"></script>
     <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
 </head>
+
 <body>
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -70,14 +72,15 @@ $setor = "RH";
                 ?>
             </tbody>
         </table>
-        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Alterar status</h5>
+                        <h5 class="modal-title" id="exampleModal2Label">Alterar status</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div>
                         <input type="hidden" id='iduser' value="<?php echo $userid ?>" />
                         <input type="hidden" id='nomeuser' value="<?php echo $nome ?>" />
                         <input type="hidden" id='setoruser' value="<?php echo $setor ?>" />
@@ -89,13 +92,14 @@ $setor = "RH";
                             <option value="Rede">Rede</option>
                             <option value="Outros">Outros</option>
                         </select>
+                        </div>
                         <div class="mb-3 mt-2">
                             <label for="descricao" class="form-label">Resumo/Descrição(Campo obrigatório)</label>
                             <textarea type="text" class="form-control" rows="4" id="descricao" placeholder="Digite aqui"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button id="salvar2" type="button" class="btn btn-success">Salvar</button>
+                            <button id="Salvar2" type="button" class="btn btn-success">Salvar</button>
                         </div>
                     </div>
                 </div>
@@ -103,4 +107,5 @@ $setor = "RH";
         </div>
     </div>
 </body>
+
 </html>

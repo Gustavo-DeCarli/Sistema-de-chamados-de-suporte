@@ -51,4 +51,5 @@ onload = async () => {
         modal1.hide();
         window.location.href = "admin.php";
     })
+    
 }

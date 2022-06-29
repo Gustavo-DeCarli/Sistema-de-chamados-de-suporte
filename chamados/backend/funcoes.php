@@ -99,15 +99,15 @@ class Andamento
         }
     }
 
-    function NovoChamado()
+    function addchamado()
     {
         $connection = DB::getInstance();
         try {
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:userid,:nome,:setor,:status,:problema,:descricao,:data)");
+            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:userid,:nome,:setor,:status,:problema,:descricao,:data,null,null,null)");
             $consulta->execute([
-                'id' => $this->id,
+                ':id' => $this->id,
                 ':userid' => $this->userid,
                 ':nome' => $this->nome,
                 ':setor' => $this->setor,

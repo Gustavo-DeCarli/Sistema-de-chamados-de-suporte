@@ -44,7 +44,7 @@
         $r = $aberto->fetchAll();
         foreach ($r as $vr);
         $connection = DB::getInstance();
-        $aberto = $connection->prepare("SELECT COUNT(status) as valor FROM chamados WHERE status='Aberto'");
+        $aberto = $connection->prepare("SELECT COUNT(status) as valor FROM chamados WHERE status='Em aberto'");
         $aberto->execute();
         $aberto->setFetchMode(PDO::FETCH_ASSOC);
         $r = $aberto->fetchAll();
@@ -60,7 +60,7 @@
         let chart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['Finalizado', 'Em andamento', 'Aberto'],
+            labels: ['Finalizado', 'Em andamento', 'Em aberto'],
             datasets: [{
               label: 'Nº de chamados',
               data: [<?php echo json_encode($vr3['valor']) ?>, <?php echo json_encode($vr['valor']) ?>, <?php echo json_encode($vr2['valor']) ?>],

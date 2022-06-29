@@ -44,7 +44,7 @@ $id = $_POST["id"];
                 <?php
                 require "../backend/conn.php";
                 $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where id=$id");
+                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, atendente, previsao, conclusao from chamados where id=$id");
                 $consulta->setFetchMode(PDO::FETCH_ASSOC);
                 $dados = $consulta->fetchAll();
                 foreach ($dados as $dados2) {

@@ -1,11 +1,13 @@
-const baseUrl = `//192.168.0.117/backend/`
+const baseUrl = `//192.168.0.117/backend/`;
+
 
 let modal2 = null
 let btnSalvar2 = null
-
 onload = async () => {
     modal2 = new bootstrap.Modal(document.getElementById("exampleModal2"))
-    btnSalvar2 = document.getElementById("salvar2")
+
+    btnSalvar2 = document.getElementById("Salvar2")
+
     btnSalvar2.addEventListener("click", async () => {
         const iduser = document.getElementById("iduser").value
         const nome = document.getElementById("nomeuser").value
@@ -22,10 +24,9 @@ onload = async () => {
 
         const response = await fetch(`${baseUrl}novo.php`, {
             method: "POST",
-            mode: 'no-cors',
             body
         })
         modal2.hide();
-       window.location.href = "user.php";
+        window.location.href = "user.php";
     })
 }

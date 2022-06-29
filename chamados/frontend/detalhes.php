@@ -7,6 +7,7 @@ if ($_POST['id'] != '') {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Teste</title>
@@ -17,6 +18,7 @@ if ($_POST['id'] != '') {
     <script src="script.js" type="text/javascript"></script>
     <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
 </head>
+
 <body>
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -132,7 +134,7 @@ if ($_POST['id'] != '') {
                         <option value="Gustavo">Gustavo</option>
                     </select>
                     <label for="previsao">Previsão de Atendimento:</label>
-                    <input class="form-control mt-1" type="date" id="previsao"/>
+                    <input class="form-control mt-1" type="date" id="previsao" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         <button id="Salvar" type="button" class="btn btn-success">Salvar</button>
@@ -152,7 +154,7 @@ if ($_POST['id'] != '') {
                 <div class="modal-body">
                     <input type="hidden" id="idf2" value="<?php echo $dados2['ID'] ?>" />
                     <label for="conclusao">Conclusão do atendimento:</label>
-                    <input class="form-control mt-1" type="text" id="conclusao"/>
+                    <input class="form-control mt-1" type="text" id="conclusao" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         <button id="ff" type="button" class="btn btn-success">Salvar</button>
@@ -164,4 +166,5 @@ if ($_POST['id'] != '') {
 
 
 </body>
+
 </html>

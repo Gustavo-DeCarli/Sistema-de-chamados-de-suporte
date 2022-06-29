@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Teste</title>
@@ -9,6 +10,7 @@
   <script src="script.js" type="text/javascript"></script>
   <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
 </head>
+
 <body>
   <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -30,47 +32,88 @@
       </div>
     </div>
   </nav>
+
   <div class="tabela container container-fluid position-static">
-    <table id='chamados' class='table rounded bg-light'>
-      <thead>
-        <tr>
-          <th scope='col'>ID</th>
-          <th scope='col'>Nome</th>
-          <th scope='col'>Setor</th>
-          <th scope='col'>Tipo de problema</th>
-          <th scope='col'>Status</th>
-          <th scope='col'>Descrição</th>
-          <th scope='col'>Data/hora</th>
-          <th scope='col'>Previsão de Atendimento</th>
-          <th scope='col'>Atendente</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        require "../backend/conn.php";
-        $connection = DB::getInstance();
-        $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $dados11 = $stmt->fetchAll();
-        foreach ($dados11 as $dados111) {
-          krsort($dados111);
-          $table = "";
-          $table .= "<tr>";
-          $table .= "<th scope='row' id='{$dados111['ID']}'>{$dados111['ID']}</th>";
-          $table .= "<td>{$dados111['nome']}</td>";
-          $table .= "<td>{$dados111['setor']}</td>";
-          $table .= "<td>{$dados111['problema']}</td>";
-          $table .= "<td>{$dados111['status']}</td>";
-          $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
-          $table .= "<td>{$dados111['data']}</td>";
-          $table .= "<td>{$dados111['previsao']}</td>";
-          $table .= "<td>{$dados111['atendente']}</td>";
-          $table .= "<td><form action='detalhes.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
-          $table .= "</tr>";
-          echo $table;
-        }
-        ?>
-      </tbody>
-    </table>
+    <div id="chamadosadm">
+      <nav class="navbar bg-light rounded-top">
+        <form action="admin.php" method='get' class="container-fluid justify-content-start">
+          <!-- <div class="col-auto">
+            <select class="form-select" name="status">
+              <option selected>Selecione o status</option>
+              <option value="Aberto">Em Aberto</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Finalizado">Finalizado</option>
+            </select>
+          </div> -->
+          <div class="ms-2 col-auto">
+            <select class="form-select" name="setor">
+              <option value='' selected>Selecione o setor</option>
+              <option value="RH">RH</option>
+              <option value="Compras">Compras</option>
+            </select>
+          </div>
+          <div class="ms-2 col-auto">
+            <input class="form-control" name="data" type="date">
+          </div>
+          <div class="ms-2 col-auto">
+            <input class="btn btn-success" type="submit" value='Filtrar'>
+          </div>
+        </form>
+      </nav>
+      <table id='chamados' class='table bg-light'>
+        <thead>
+          <tr>
+            <th scope='col'>ID</th>
+            <th scope='col'>Nome</th>
+            <th scope='col'>Setor</th>
+            <th scope='col'>Tipo de problema</th>
+            <th scope='col'>Status</th>
+            <th scope='col'>Descrição</th>
+            <th scope='col'>Data/hora</th>
+            <th scope='col'>Previsão de Atendimento</th>
+            <th scope='col'>Atendente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          require "../backend/conn.php";
+          $connection = DB::getInstance();
+          if (isset($_POST['data']) and ($_POST['setor'])) {
+            $data = $_POST['data'];
+            $setor = $_POST['setor'];
+            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' AND setor = '$setor' ORDER BY id DESC");
+          } elseif (isset($_POST['data'])) {
+            $data = $_POST['data'];
+            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' ORDER BY id DESC");
+          } elseif (isset($_POST['setor'])) {
+            $setor = $_POST['setor'];
+            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE setor = '$setor' ORDER BY id DESC");
+          } else{
+            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
+          }
+          $stmt->setFetchMode(PDO::FETCH_ASSOC);
+          $dados11 = $stmt->fetchAll();
+          foreach ($dados11 as $dados111) {
+            $table = "";
+            $table .= "<tr>";
+            $table .= "<th scope='row' id='{$dados111['ID']}'>{$dados111['ID']}</th>";
+            $table .= "<td>{$dados111['nome']}</td>";
+            $table .= "<td>{$dados111['setor']}</td>";
+            $table .= "<td>{$dados111['problema']}</td>";
+            $table .= "<td>{$dados111['status']}</td>";
+            $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
+            $table .= "<td>{$dados111['data']}</td>";
+            $table .= "<td>{$dados111['previsao']}</td>";
+            $table .= "<td>{$dados111['atendente']}</td>";
+            $table .= "<td><form action='detalhes.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
+            $table .= "</tr>";
+            echo $table;
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
+
 </html>
