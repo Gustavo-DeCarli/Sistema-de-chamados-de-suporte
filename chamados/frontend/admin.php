@@ -36,7 +36,7 @@
   <div class="tabela container container-fluid position-static">
     <div id="chamadosadm">
       <nav class="navbar bg-light rounded-top">
-        <form action="admin.php" method='get' class="container-fluid justify-content-start">
+        <form action="admin.php" method='POST' class="container-fluid justify-content-start">
           <!-- <div class="col-auto">
             <select class="form-select" name="status">
               <option selected>Selecione o status</option>
