@@ -55,7 +55,7 @@
       </nav>
       <table id='chamados' class='table bg-light'>
         <thead>
-          <tr>
+          <tr class='text-center'>
             <th scope='col'>ID</th>
             <th scope='col'>Nome</th>
             <th scope='col'>Setor</th>
