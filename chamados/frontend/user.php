@@ -40,7 +40,7 @@ $setor = "RH";
         </nav>
         <table id='chamados' class='table bg-light'>
             <thead>
-                <tr>
+                <tr class='text-center'>
                     <th scope='col'>Nome</th>
                     <th scope='col'>Setor</th>
                     <th scope='col'>Tipo de problema</th>
@@ -58,7 +58,7 @@ $setor = "RH";
                 $dados11 = $stmt->fetchAll();
                 foreach ($dados11 as $dados111) {
                     $table = "";
-                    $table .= "<tr>";
+                    $table .= "<tr class='text-center'>";
                     $table .= "<td>{$dados111['nome']}</td>";
                     $table .= "<td>{$dados111['setor']}</td>";
                     $table .= "<td>{$dados111['problema']}</td>";
