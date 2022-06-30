@@ -37,19 +37,12 @@
     <div id="chamadosadm">
       <nav class="navbar bg-light rounded-top">
         <form action="admin.php" method='POST' class="container-fluid justify-content-start">
-          <!-- <div class="col-auto">
+          <div class="col-auto">
             <select class="form-select" name="status">
-              <option selected>Selecione o status</option>
-              <option value="Aberto">Em Aberto</option>
+              <option value='' selected>Selecione o status</option>
+              <option value="Em Aberto">Em Aberto</option>
               <option value="Em andamento">Em andamento</option>
               <option value="Finalizado">Finalizado</option>
-            </select>
-          </div> -->
-          <div class="ms-2 col-auto">
-            <select class="form-select" name="setor">
-              <option value='' selected>Selecione o setor</option>
-              <option value="RH">RH</option>
-              <option value="Compras">Compras</option>
             </select>
           </div>
           <div class="ms-2 col-auto">
@@ -78,17 +71,19 @@
           <?php
           require "../backend/conn.php";
           $connection = DB::getInstance();
-          if (isset($_POST['data']) and ($_POST['setor'])) {
+          if (isset($_POST['data']) or isset($_POST['status'])) {
             $data = $_POST['data'];
-            $setor = $_POST['setor'];
-            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' AND setor = '$setor' ORDER BY id DESC");
-          } elseif (isset($_POST['data'])) {
-            $data = $_POST['data'];
-            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' ORDER BY id DESC");
-          } elseif (isset($_POST['setor'])) {
-            $setor = $_POST['setor'];
-            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE setor = '$setor' ORDER BY id DESC");
-          } else{
+            echo $data;
+            $status = $_POST['status'];
+            echo $status;
+            if ($data != '' and $status != '') {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' AND status = '$status' ORDER BY id DESC");
+            } elseif ($data != '' and $status == '') {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' ORDER BY id DESC");
+            } elseif ($data == '' and $status != '') {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE status = '$status' ORDER BY id DESC");
+            }
+          } else {
             $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
           }
           $stmt->setFetchMode(PDO::FETCH_ASSOC);
