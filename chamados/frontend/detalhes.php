@@ -124,7 +124,7 @@ if ($_POST['id'] != '') {
                     <label for="status">Status:</label>
                     <select class="form-select mt-1" name="status" id="status" form="statusform">
                         <option value="Em Andamento">Em andamento</option>
-                        <option value="Aberto">Aberto</option>
+                        <option value="Em Aberto">Em Aberto</option>
                     </select>
                     <label for="atendente">Atendente:</label>
                     <select class="form-select mt-1" name="atendente" id="atendente" form="statusform">

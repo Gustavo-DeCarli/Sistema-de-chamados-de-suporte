@@ -1,4 +1,4 @@
-const baseUrl = `//192.168.0.127/backend/`;
+const baseUrl = `//192.168.0.102/backend/`;
 
 let modal1 = null
 let modal3 = null
