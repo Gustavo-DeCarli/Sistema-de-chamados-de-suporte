@@ -90,7 +90,7 @@
           $dados11 = $stmt->fetchAll();
           foreach ($dados11 as $dados111) {
             $table = "";
-            $table .= "<tr>";
+            $table .= "<tr class='text-center'>";
             $table .= "<th scope='row' id='{$dados111['ID']}'>{$dados111['ID']}</th>";
             $table .= "<td>{$dados111['nome']}</td>";
             $table .= "<td>{$dados111['setor']}</td>";
