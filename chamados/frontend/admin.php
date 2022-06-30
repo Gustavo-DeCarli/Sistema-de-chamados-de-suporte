@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Teste</title>
+  <title>Chamados Rinaldi</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
@@ -73,15 +73,15 @@
           $connection = DB::getInstance();
           if (isset($_POST['data']) or isset($_POST['status'])) {
             $data = $_POST['data'];
-            echo $data;
             $status = $_POST['status'];
-            echo $status;
             if ($data != '' and $status != '') {
               $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' AND status = '$status' ORDER BY id DESC");
             } elseif ($data != '' and $status == '') {
               $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' ORDER BY id DESC");
             } elseif ($data == '' and $status != '') {
               $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE status = '$status' ORDER BY id DESC");
+            } else {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
             }
           } else {
             $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");

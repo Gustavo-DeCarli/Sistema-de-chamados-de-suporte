@@ -105,7 +105,7 @@ class Andamento
         try {
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:userid,:nome,:setor,:status,:problema,:descricao,:data,null,null,null)");
+            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:userid,:nome,:setor,:status,:problema,:descricao,null,null,null,:data)");
             $consulta->execute([
                 ':id' => $this->id,
                 ':userid' => $this->userid,
