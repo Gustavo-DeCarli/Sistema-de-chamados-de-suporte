@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+
+    DocumentRoot C:\xampp\htdocs\chamados
+    <Directory />
+            Options FollowSymLinks
+            AllowOverride None
+    </Directory>
+    <Directory C:\xampp\htdocs\chamados>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    </Directory>
+</virtualhost>
