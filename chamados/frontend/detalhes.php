@@ -154,7 +154,7 @@ if ($_POST['id'] != '') {
                 <div class="modal-body">
                     <input type="hidden" id="idf2" value="<?php echo $dados2['ID'] ?>" />
                     <label for="conclusao">Conclusão do atendimento:</label>
-                    <input class="form-control mt-1" type="text" id="conclusao" />
+                    <textarea class="form-control mt-1" rows='4' type="text" id="conclusao" placeholder="Detalhes sobre o que foi feito"></textarea>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         <button id="ff" type="button" class="btn btn-success">Salvar</button>

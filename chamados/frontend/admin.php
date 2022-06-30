@@ -96,7 +96,7 @@
             $table .= "<td>{$dados111['setor']}</td>";
             $table .= "<td>{$dados111['problema']}</td>";
             $table .= "<td>{$dados111['status']}</td>";
-            $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
+            $table .= "<td class='texto text-break'>{$dados111['descricao']}</td>";
             $table .= "<td>{$dados111['data']}</td>";
             $table .= "<td>{$dados111['previsao']}</td>";
             $table .= "<td>{$dados111['atendente']}</td>";
