@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="frontend/style.css" rel="stylesheet" type="text/css" />
     <script src="frontend/script.js" type="text/javascript"></script>
-    <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
+    <link rel="icon" type="image/x-icon" href="images/nav.png">
 </head>
 <body class="fundo">
     <div class="container-fluid vh-100" style="margin-top:150px;">

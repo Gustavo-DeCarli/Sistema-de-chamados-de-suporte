@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Chamados Rinaldi</title>
@@ -7,12 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
+  <link rel="icon" type="image/x-icon" href="images/nav.png">
 </head>
+
 <body class="fundo">
   <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand mt-2">
+      <a class="navbar-brand">
         <img src="images/rinaldi.png" height="40">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,32 +32,34 @@
       </div>
     </div>
   </nav>
-  <div class="col-xs-12 text-center mt-5">
+  <div class="col-xs-12 text-center mt-3">
     <h2 class="text-light">Estatísticas de chamados</h2>
   </div>
   <div class='mt-4 grafico'>
+    <nav class="navbar bg-light rounded-top">
+      <form action="estatisticas.php" method='POST' class="container-fluid justify-content-center">
+        <div class="ms-2 col-auto">
+          <a>Inicio:</a>
+        </div>
+        <div class="ms-2 col-auto">
+          <input class="form-control " name="data" type="date">
+        </div>
+        <div class="ms-2 col-auto">
+          <a>Fim:</a>
+        </div>
+        <div class="ms-2 col-auto">
+          <input class="form-control " name="data2" type="date">
+        </div>
+        <div class="ms-2 col-auto">
+          <input class="btn btn-success" type="submit" value='Filtrar'>
+        </div>
+      </form>
+    </nav>
     <canvas id="myChart">
       <script>
         <?php
         require "../backend/conn.php";
-        $connection = DB::getInstance();
-        $aberto = $connection->prepare("SELECT COUNT(status) as valor FROM chamados WHERE status='Em andamento'");
-        $aberto->execute();
-        $aberto->setFetchMode(PDO::FETCH_ASSOC);
-        $r = $aberto->fetchAll();
-        foreach ($r as $vr);
-        $connection = DB::getInstance();
-        $aberto = $connection->prepare("SELECT COUNT(status) as valor FROM chamados WHERE status='Em aberto'");
-        $aberto->execute();
-        $aberto->setFetchMode(PDO::FETCH_ASSOC);
-        $r = $aberto->fetchAll();
-        foreach ($r as $vr2);
-        $connection = DB::getInstance();
-        $aberto = $connection->prepare("SELECT COUNT(status) as valor FROM chamados WHERE status='Finalizado'");
-        $aberto->execute();
-        $aberto->setFetchMode(PDO::FETCH_ASSOC);
-        $r = $aberto->fetchAll();
-        foreach ($r as $vr3);
+        require "../backend/consultastats.php";
         ?>
         let ctx = document.getElementById('myChart').getContext('2d');
         let chart = new Chart(ctx, {

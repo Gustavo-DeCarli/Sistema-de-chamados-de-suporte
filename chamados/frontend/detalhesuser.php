@@ -10,22 +10,16 @@ $id = $_POST["id"];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="script.js" type="text/javascript"></script>
-    <link rel="icon" type="image/x-icon" href="images/rinaldi.png">
+    <link rel="icon" type="image/x-icon" href="images/nav.png">
 </head>
 <body>
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
-            <a class="navbar-brand mt-2">
+            <a class="navbar-brand">
                 <img src="images/rinaldi.png" height="40">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="admin.php">Chamados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Estatísticas</a>
-                    </li>
                     <li class="nav-item px-2">
                         <button type="submit" class="btn btn-danger p-1 mt-1 px-2">Logout</button>
                     </li>
@@ -49,9 +43,6 @@ $id = $_POST["id"];
                 $dados = $consulta->fetchAll();
                 foreach ($dados as $dados2) {
                     $table = "";
-                    $table .= "<tr>";
-                    $table .= "<td>ID: {$dados2["ID"]}</td>";
-                    $table .= "</tr>";
                     $table .= "<tr>";
                     $table .= "<td>";
                     $table .= " Nome: {$dados2["nome"]}";
