@@ -20,7 +20,7 @@ $setor = "RH";
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
             <a class="navbar-brand">
-                <img src="images/rinaldi.png" height="40">
+                <img src="images/rinaldi.png" height="35">
             </a>
             <a id="nave" class='nav-item px-5 d-flex justify-content-center text-light text-decoration-none'>Meus chamados</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">

@@ -16,7 +16,7 @@ $id = $_POST["id"];
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
             <a class="navbar-brand">
-                <img src="images/rinaldi.png" height="40">
+                <img src="images/rinaldi.png" height="35">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
