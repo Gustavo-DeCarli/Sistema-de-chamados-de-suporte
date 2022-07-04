@@ -46,7 +46,16 @@
             </select>
           </div>
           <div class="ms-2 col-auto">
+            <a >De:</a>
+          </div>
+          <div class="ms-2 col-auto">
             <input class="form-control" name="data" type="date">
+          </div>
+          <div class="ms-2 col-auto">
+            <a >Até:</a>
+          </div>
+          <div class="ms-2 col-auto">
+            <input class="form-control" name="data2" type="date">
           </div>
           <div class="ms-2 col-auto">
             <input class="btn btn-success" type="submit" value='Filtrar'>
@@ -71,13 +80,14 @@
           <?php
           require "../backend/conn.php";
           $connection = DB::getInstance();
-          if (isset($_POST['data']) or isset($_POST['status'])) {
+          if (isset($_POST['data']) or isset($_POST['status']) or isset($_POST['data2'])) {
             $data = $_POST['data'];
+            $data2 = $_POST['data2'];
             $status = $_POST['status'];
-            if ($data != '' and $status != '') {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' AND status = '$status' ORDER BY id DESC");
-            } elseif ($data != '' and $status == '') {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data 23:59:00' ORDER BY id DESC");
+            if ($data != '' and $status != '' and $data2 != '') {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' AND status = '$status' ORDER BY id DESC");
+            } elseif ($data != '' and $data2 != '' and $status == '') {
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' ORDER BY id DESC");
             } elseif ($data == '' and $status != '') {
               $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE status = '$status' ORDER BY id DESC");
             } else {

@@ -3,6 +3,7 @@ $id = $_POST["id"];
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Chamados Rinaldi</title>
@@ -12,6 +13,7 @@ $id = $_POST["id"];
     <script src="script.js" type="text/javascript"></script>
     <link rel="icon" type="image/x-icon" href="images/nav.png">
 </head>
+
 <body>
     <nav id="navi" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -34,65 +36,37 @@ $id = $_POST["id"];
             </form>
         </nav>
         <div id="lista">
-            <table class="table rounded-bottom">
-                <?php
-                require "../backend/conn.php";
-                $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, atendente, previsao, conclusao from chamados where id=$id");
-                $consulta->setFetchMode(PDO::FETCH_ASSOC);
-                $dados = $consulta->fetchAll();
-                foreach ($dados as $dados2) {
-                    $table = "";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= " Nome: {$dados2["nome"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Setor: {$dados2["setor"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Tipo de problema: {$dados2["problema"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Status: {$dados2["status"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Data/hora: {$dados2["data"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td id='desc' class='text-break'>";
-                    $table .= "Descrição: {$dados2["descricao"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Previsão de Atendimento: {$dados2["previsao"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Atendente: {$dados2["atendente"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    $table .= "<tr>";
-                    $table .= "<td>";
-                    $table .= "Conclusão: {$dados2["conclusao"]}";
-                    $table .= "</td>";
-                    $table .= "</tr>";
-                    echo $table;
-                }
-                ?>
+            <table class="container rounded-bottom">
+                <div class="row">
+                    <?php
+                    require "../backend/conn.php";
+                    $connection = DB::getInstance();
+                    $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, atendente, previsao, conclusao from chamados where id=$id");
+                    $consulta->setFetchMode(PDO::FETCH_ASSOC);
+                    $dados = $consulta->fetchAll();
+                    foreach ($dados as $dados2) {
+                        $table = "";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>ID: {$dados2["ID"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light'>Nome: {$dados2["nome"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Setor: {$dados2["setor"]}</div> ";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>Tipo de problema: {$dados2["problema"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light'>Status: {$dados2["status"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Data/hora: {$dados2["data"]}</div>";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>Atendente: {$dados2["atendente"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Previsão de Atendimento: {$dados2["previsao"]}</div>";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div id='desc' class='col text-break mt-2'>Descrição: {$dados2["descricao"]}</div>";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div id='desc' class='col text-break mt-2'>Conclusão: {$dados2["conclusao"]}</div>";
+                        echo $table;
+                    }
+                    ?>
+                </div>
             </table>
         </div>
     </div>
 </body>
+
 </html>

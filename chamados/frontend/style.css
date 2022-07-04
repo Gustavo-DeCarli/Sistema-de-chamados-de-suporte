@@ -15,9 +15,10 @@ body {
 
 #lista {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 18px ;
+    font-size: 20px ;
     margin: auto;
     background-color: white;
+    padding: 15px;
 }
 
 #tabela{
@@ -45,7 +46,7 @@ body {
     width: 67%;
     height: 70%;
     background-color: white;
-    border-radius: 4px;
+    border-radius:4px;
     margin: 0 auto;
 }
 

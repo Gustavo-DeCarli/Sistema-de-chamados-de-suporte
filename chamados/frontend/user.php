@@ -8,7 +8,7 @@ $setor = "RH";
 
 <head>
     <meta charset="UTF-8">
-    <title>Teste</title>
+    <title>Chamados Rinaldi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -63,7 +63,7 @@ $setor = "RH";
                     $table .= "<td>{$dados111['setor']}</td>";
                     $table .= "<td>{$dados111['problema']}</td>";
                     $table .= "<td>{$dados111['status']}</td>";
-                    $table .= "<td class='text-break'>{$dados111['descricao']}</td>";
+                    $table .= "<td class='texto text-break'>{$dados111['descricao']}</td>";
                     $table .= "<td>{$dados111['data']}</td>";
                     $table .= "<td><form action='detalhesuser.php' method='POST'><button name='id' id='id' value='{$dados111['ID']}' type='submit' class='btn btn-danger'>Mais detalhes</button></form></td>";
                     $table .= "</tr>";
