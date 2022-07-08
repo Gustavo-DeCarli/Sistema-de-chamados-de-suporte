@@ -4,7 +4,6 @@ USE teste;
 
 CREATE TABLE chamados(
     ID INT NOT NULL AUTO_INCREMENT,
-    userid INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     setor VARCHAR(100) NOT NULL,
     status VARCHAR(100) NOT NULL,
@@ -16,4 +15,3 @@ CREATE TABLE chamados(
     data DATETIME NULL,
     PRIMARY KEY(ID)
 )
-

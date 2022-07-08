@@ -13,6 +13,3 @@
             allow from all
     </Directory>
 </virtualhost>
-
-
-ldap windows php autenticação :https://blog.fabianobento.com.br/2015/06/php-ldap/

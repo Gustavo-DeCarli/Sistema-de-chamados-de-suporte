@@ -1,14 +1,14 @@
 <?php
 require "funcoes.php";
-
+session_start();
+echo $_SESSION['nome'];
 try {
     if($_POST['descricao'] != ''){
     $s = new Andamento();
     date_default_timezone_set('America/Sao_Paulo');
     $s->setId('');
-    $s->setUserId($_POST['iduser']);
-    $s->setNome($_POST['nomeuser']);
-    $s->setSetor($_POST['setoruser']);
+    $s->setNome($_SESSION['nome']);
+    $s->setSetor($_POST['setor']);
     $s->setstatus('Em aberto');
     $s->setProblema($_POST['problema']);
     $s->setDescricao($_POST['descricao']);

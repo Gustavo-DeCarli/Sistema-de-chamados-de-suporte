@@ -4,6 +4,18 @@ if ($_POST['id'] != '') {
 } else {
     header('Location: admin.php');
 }
+session_start();
+if (!isset($_SESSION['nome'])) {
+    header("Location: ../index.php?log");
+    exit;
+}
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../index.php');
+}
+if ($_SESSION['nome'] != 'ADMINISTRATOR') {
+    header('Location: ../user.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +46,9 @@ if ($_POST['id'] != '') {
                         <a class="nav-link text-light" href="estatisticas.php">Estatísticas</a>
                     </li>
                     <li class="nav-item px-2">
-                        <button type="submit" class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+                        <form method="POST">
+                            <button type="submit" name='logout' class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -51,31 +65,31 @@ if ($_POST['id'] != '') {
         <div id="lista">
             <table class="container rounded-bottom">
                 <div class="row">
-                <?php
-                require "../backend/conn.php";
-                $connection = DB::getInstance();
-                $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao, atendente, conclusao from chamados where id=$id");
-                $consulta->setFetchMode(PDO::FETCH_ASSOC);
-                $dados = $consulta->fetchAll();
-                foreach ($dados as $dados2) {
-                    $table = "";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-start'>ID: {$dados2["ID"]}</div>";
-                    $table .= "<div class='col text-center border border-5 border-light'>Nome: {$dados2["nome"]}</div>";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-end'>Setor: {$dados2["setor"]}</div> ";
-                    $table .= "<div class='w-100 mt-2'></div>";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-start'>Tipo de problema: {$dados2["problema"]}</div>";
-                    $table .= "<div class='col text-center border border-5 border-light'>Status: {$dados2["status"]}</div>";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-end'>Data/hora: {$dados2["data"]}</div>";
-                    $table .= "<div class='w-100 mt-2'></div>";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-start'>Atendente: {$dados2["atendente"]}</div>";
-                    $table .= "<div class='col text-center border border-5 border-light rounded-end'>Previsão de Atendimento: {$dados2["previsao"]}</div>";
-                    $table .= "<div class='w-100 mt-2'></div>";
-                    $table .= "<div id='desc' class='col text-break mt-2'>Descrição: {$dados2["descricao"]}</div>";
-                    $table .= "<div class='w-100 mt-2'></div>";
-                    $table .= "<div id='desc' class='col text-break mt-2'>Conclusão: {$dados2["conclusao"]}</div>";
-                    echo $table;
-                }
-                ?>
+                    <?php
+                    require "../backend/conn.php";
+                    $connection = DB::getInstance();
+                    $consulta = $connection->query("SELECT ID,nome,setor,status,problema,descricao,DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao, atendente, conclusao from chamados where id=$id");
+                    $consulta->setFetchMode(PDO::FETCH_ASSOC);
+                    $dados = $consulta->fetchAll();
+                    foreach ($dados as $dados2) {
+                        $table = "";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>ID: {$dados2["ID"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light'>Nome: {$dados2["nome"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Setor: {$dados2["setor"]}</div> ";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>Tipo de problema: {$dados2["problema"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light'>Status: {$dados2["status"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Data/hora: {$dados2["data"]}</div>";
+                        $table .= "<div class='w-100 mt-2'></div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-start'>Atendente: {$dados2["atendente"]}</div>";
+                        $table .= "<div class='col text-center border border-5 border-light rounded-end'>Previsão de Atendimento: {$dados2["previsao"]}</div>";
+                        $table .= "<div class='w-100 mt-2 border border-5 border-light'></div>";
+                        $table .= "<div id='desc' class='col text-break mt-2'>Descrição: {$dados2["descricao"]}</div>";
+                        $table .= "<div class='w-100 mt-2 border border-5 border-light'></div>";
+                        $table .= "<div id='desc' class='col text-break mt-2'>Conclusão: {$dados2["conclusao"]}</div>";
+                        echo $table;
+                    }
+                    ?>
                 </div>
             </table>
         </div>

@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION['nome'])) {
+  header("Location: ../index.php?log"); 
+  exit;
+}
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header('Location: ../index.php');
+}
+if($_SESSION['nome'] != 'ADMINISTRATOR'){
+  header('Location: ../user.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +40,9 @@
             <a class="nav-link text-light" href="estatisticas.php">Estatísticas</a>
           </li>
           <li class="nav-item px-2">
-            <button type="submit" class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+            <form method="POST">
+            <button type="submit" name='logout' class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+            </form>
           </li>
         </ul>
       </div>

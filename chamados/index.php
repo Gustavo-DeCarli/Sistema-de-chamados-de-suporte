@@ -1,5 +1,15 @@
+<?php
+if (isset($_GET['erro'])) {
+    echo "<script>alert('Login incorreto!')</script>";
+}
+if (isset($_GET['log'])) {
+    echo "<script>alert('Você precisa fazer login!')</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Chamados Rinaldi</title>
@@ -10,6 +20,7 @@
     <script src="frontend/script.js" type="text/javascript"></script>
     <link rel="icon" type="image/x-icon" href="images/nav.png">
 </head>
+
 <body class="fundo">
     <div class="container-fluid vh-100" style="margin-top:150px;">
         <div>
@@ -18,20 +29,18 @@
                     <div class="text-center">
                         <h3 class="text-danger">Login</h3>
                     </div>
-                    <form action="frontend/admin.php">
+                    <form action="backend/verif.php" method="POST">
                         <div class="p-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-danger"><i class="bi bi-person-plus-fill text-white"></i></span>
-                                <input type="text" class="form-control" placeholder="Usuário">
+                                <input type="text" name='nome' id='nome' class="form-control" placeholder="Usuário">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-danger"><i class="bi bi-key-fill text-white"></i></span>
-                                <input type="password" class="form-control" placeholder="Senha">
+                                <input type="password" name='senha' id='senha' class="form-control" placeholder="Senha">
                             </div>
                             <div class="d-grid">
-                                <button id="login" class="btn btn-danger  text-center mt-2" type="submit">
-                                    Login
-                                </button>
+                                <input id="login" class="btn btn-danger  text-center mt-2" Value='Login' type="submit">
                             </div>
                         </div>
                     </form>
@@ -40,4 +49,5 @@
         </div>
     </div>
 </body>
+
 </html>

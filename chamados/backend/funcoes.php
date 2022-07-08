@@ -3,7 +3,6 @@ require "conn.php";
 class Andamento
 {
     private $id = "";
-    private $userid = "";
     private $nome = "";
     private $setor = "";
     private $problema = "";
@@ -18,7 +17,6 @@ class Andamento
     {
         return json_encode([
             "id" => $this->id,
-            "userid" => $this->userid,
             "status" => $this->status,
             "nome" => $this->nome,
             "setor" => $this->setor,
@@ -35,10 +33,10 @@ class Andamento
     {
         $this->id = $v;
     }
-    function setUserId($v)
-    {
-        $this->userid = $v;
-    }
+    // function setUserId($v)
+    // {
+    //     $this->userid = $v;
+    // }
     function setNome($v)
     {
         $this->nome = $v;
@@ -105,10 +103,9 @@ class Andamento
         try {
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:userid,:nome,:setor,:status,:problema,:descricao,null,null,null,:data)");
+            $consulta = $connection->prepare("INSERT INTO chamados VALUES (:id,:nome,:setor,:status,:problema,:descricao,null,null,null,:data)");
             $consulta->execute([
                 ':id' => $this->id,
-                ':userid' => $this->userid,
                 ':nome' => $this->nome,
                 ':setor' => $this->setor,
                 ':status' => $this->status,

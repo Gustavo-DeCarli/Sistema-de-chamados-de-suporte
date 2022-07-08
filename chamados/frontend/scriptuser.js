@@ -9,16 +9,14 @@ onload = async () => {
     btnSalvar2 = document.getElementById("Salvar2")
 
     btnSalvar2.addEventListener("click", async () => {
-        const iduser = document.getElementById("iduser").value
         const nome = document.getElementById("nomeuser").value
-        const setor = document.getElementById("setoruser").value
+        const setor = document.getElementById("setor").value
         const problema = document.getElementById("problema").value
         const descricao = document.getElementById("descricao").value
 
         const body = new FormData()
-        body.append('iduser', iduser)
         body.append('nomeuser', nome)
-        body.append('setoruser', setor)
+        body.append('setor', setor)
         body.append('problema', problema)
         body.append('descricao', descricao)
 

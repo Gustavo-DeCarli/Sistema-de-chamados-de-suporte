@@ -1,7 +1,14 @@
 <?php
-$userid = 1;
-$nome = "Gustavo";
-$setor = "RH";
+session_start();
+$nome = $_SESSION['nome'];
+if (!isset($_SESSION['nome'])) {
+    header("Location: ../index.php?log");
+    exit;
+}
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +33,9 @@ $setor = "RH";
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-2">
-                        <button type="submit" class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+                        <form method="POST">
+                            <button type="submit" name='logout' class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -53,7 +62,7 @@ $setor = "RH";
                 <?php
                 require "../backend/conn.php";
                 $connection = DB::getInstance();
-                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where userid=1 ORDER BY id DESC");
+                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where nome='$nome' ORDER BY id DESC");
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $dados11 = $stmt->fetchAll();
                 foreach ($dados11 as $dados111) {
@@ -81,17 +90,27 @@ $setor = "RH";
                     </div>
                     <div class="modal-body">
                         <div>
-                        <input type="hidden" id='iduser' value="<?php echo $userid ?>" />
-                        <input type="hidden" id='nomeuser' value="<?php echo $nome ?>" />
-                        <input type="hidden" id='setoruser' value="<?php echo $setor ?>" />
-                        <label for="problema">Tipo de problema:</label>
-                        <select class="form-select" name="problema" id="problema" form="statusform">
-                            <option value="">Selecione</option>
-                            <option value="Sistema">Sistema</option>
-                            <option value="Equipamento">Equipamento</option>
-                            <option value="Rede">Rede</option>
-                            <option value="Outros">Outros</option>
-                        </select>
+                            <input type="hidden" id='nomeuser' value="<?php echo $nome ?>" />
+                            <label for="setor">Setor:</label>
+                            <select class="form-select" name="setor" id="setor" form="statusform">
+                                <option value="">Selecione</option>
+                                <option value="RH">RH</option>
+                                <option value="Suprimentos">Suprimentos</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Contas a pagar">Contas a pagar</option>
+                                <option value="Contas a receber">Contas a receber</option>
+                                <option value="CETEC">CETEC</option>
+                                <option value="Engenharia">Engenharia</option>
+                                <option value="Fábrica">Fábrica</option>
+                            </select>
+                            <label class="mt-2" for="problema">Tipo de problema:</label>
+                            <select class="form-select" name="problema" id="problema" form="statusform">
+                                <option value="">Selecione</option>
+                                <option value="Sistema">Sistema</option>
+                                <option value="Equipamento">Equipamento</option>
+                                <option value="Rede">Rede</option>
+                                <option value="Outros">Outros</option>
+                            </select>
                         </div>
                         <div class="mb-3 mt-2">
                             <label for="descricao" class="form-label">Resumo/Descrição(Campo obrigatório)</label>
