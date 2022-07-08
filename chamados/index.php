@@ -1,12 +1,3 @@
-<?php
-if (isset($_GET['erro'])) {
-    echo "<script>alert('Login incorreto!')</script>";
-}
-if (isset($_GET['log'])) {
-    echo "<script>alert('Você precisa fazer login!')</script>";
-}
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -22,12 +13,30 @@ if (isset($_GET['log'])) {
 </head>
 
 <body class="fundo">
-    <div class="container-fluid vh-100" style="margin-top:150px;">
+    <div class="container-fluid vh-100" style="margin-top:100px;">
         <div>
             <div class="rounded d-flex justify-content-center">
                 <div class="col-md-4 col-sm-12 rounded shadow-lg p-5 bg-light">
-                    <div class="text-center">
-                        <h3 class="text-danger">Login</h3>
+                    <?php
+                    if (isset($_GET['erro'])) {
+                        echo "<div class='text-center alert alert-danger alert-dismissible fade show' role='alert'>
+    <strong>Login incorreto!</strong>
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";;
+                    }
+                    if (isset($_GET['log'])) {
+                        echo "<div class='text-center alert alert-danger alert-dismissible fade show' role='alert'>
+    <strong>Você precisa fazer o login!</strong>
+    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+  </div>";
+                    }
+
+                    ?>
+                    <div class="nav flex d-flex justify-content-center">
+                        <img src="frontend/images/rinaldi.png">
+                    </div>
+                    <div class="text-center mt-4">
+                        <h3 class="text-danger">Sistema de Chamados</h3>
                     </div>
                     <form action="backend/verif.php" method="POST">
                         <div class="p-4">

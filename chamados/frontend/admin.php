@@ -1,15 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['nome'])) {
-  header("Location: ../index.php?log"); 
-  exit;
-}
 if (isset($_POST['logout'])) {
   session_destroy();
   header('Location: ../index.php');
 }
 if($_SESSION['nome'] != 'ADMINISTRATOR'){
-  header('Location: ../user.php');
+  header('Location: user.php');
 }
 ?>
 <!DOCTYPE html>

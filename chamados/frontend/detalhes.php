@@ -5,10 +5,6 @@ if ($_POST['id'] != '') {
     header('Location: admin.php');
 }
 session_start();
-if (!isset($_SESSION['nome'])) {
-    header("Location: ../index.php?log");
-    exit;
-}
 if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: ../index.php');
