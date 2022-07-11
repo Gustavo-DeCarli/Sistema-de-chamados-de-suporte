@@ -47,7 +47,7 @@ if (isset($_POST['logout'])) {
                 <button class="btn btn-success me-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">Novo chamado</button>
             </form>
         </nav>
-        <table id='chamados' class='table bg-light'>
+        <table id='chamados' class='table align-middle bg-light'>
             <thead>
                 <tr class='text-center'>
                     <th scope='col'>Nome</th>
@@ -94,14 +94,25 @@ if (isset($_POST['logout'])) {
                             <label for="setor">Setor:</label>
                             <select class="form-select" name="setor" id="setor" form="statusform">
                                 <option value="">Selecione</option>
-                                <option value="RH">RH</option>
-                                <option value="Suprimentos">Suprimentos</option>
+                                <option value="CETEC">CETEC</option>
                                 <option value="Comercial">Comercial</option>
+                                <option value="Contabilidade">Contabilidade</option>
                                 <option value="Contas a pagar">Contas a pagar</option>
                                 <option value="Contas a receber">Contas a receber</option>
-                                <option value="CETEC">CETEC</option>
+                                <option value="Controladoria">Controladoria</option>
+                                <option value="Direção">Direção</option>
+                                <option value="Enfermaria">Enfermaria</option>
                                 <option value="Engenharia">Engenharia</option>
-                                <option value="Fábrica">Fábrica</option>
+                                <option value="Jurídico">Jurídico</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Manutenção">Manutenção</option>
+                                <option value="Matrizaria">Matrizaria</option>
+                                <option value="Produção">Produção</option>
+                                <option value="Qualidade">Qualidade</option>
+                                <option value="Refeitório">Refeitório</option>
+                                <option value="RH">RH</option>
+                                <option value="Suprimentos">Suprimentos</option>
+                                <option value="TI">TI</option>
                             </select>
                             <label class="mt-2" for="problema">Tipo de problema:</label>
                             <select class="form-select" name="problema" id="problema" form="statusform">

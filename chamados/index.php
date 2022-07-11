@@ -42,7 +42,7 @@
                         <div class="p-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-danger"><i class="bi bi-person-plus-fill text-white"></i></span>
-                                <input type="text" name='nome' id='nome' class="form-control" placeholder="Usuário">
+                                <input type="text" autocomplete="off"name='nome' id='nome' class="form-control" placeholder="Usuário">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-danger"><i class="bi bi-key-fill text-white"></i></span>

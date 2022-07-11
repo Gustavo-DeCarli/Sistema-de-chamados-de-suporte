@@ -33,10 +33,6 @@ class Andamento
     {
         $this->id = $v;
     }
-    // function setUserId($v)
-    // {
-    //     $this->userid = $v;
-    // }
     function setNome($v)
     {
         $this->nome = $v;
@@ -128,11 +124,12 @@ class Andamento
         try {
             $consulta = $connection->prepare("START TRANSACTION;");
             $consulta->execute();
-            $consulta = $connection->prepare("UPDATE chamados SET status='Finalizado',conclusao=:conclusao, previsao=:previsao WHERE id = :id");
+            $consulta = $connection->prepare("UPDATE chamados SET status='Finalizado',conclusao=:conclusao, previsao=:previsao, atendente=:atendente WHERE id = :id");
             $consulta->execute([
                 ':id' => $this->id,
                 ':conclusao' => $this->conclusao,
-                ':previsao' => $this->previsao
+                ':previsao' => $this->previsao,
+                ':atendente' => $this->atendente
             ]);
             $consulta = $connection->prepare("COMMIT;");
             $consulta->execute();

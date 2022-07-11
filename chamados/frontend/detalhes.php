@@ -106,6 +106,7 @@ if ($_SESSION['nome'] != 'ADMINISTRATOR') {
                     </select>
                     <label for="atendente">Atendente:</label>
                     <select class="form-select mt-1" name="atendente" id="atendente" form="statusform">
+                        <option value="">Selecione</option>
                         <option value="Juliano">Juliano</option>
                         <option value="Anderson">Anderson</option>
                         <option value="Anelise">Anelise</option>
@@ -131,6 +132,13 @@ if ($_SESSION['nome'] != 'ADMINISTRATOR') {
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="idf2" value="<?php echo $dados2['ID'] ?>" />
+                    <label for="atendente">Atendente:</label>
+                    <select class="form-select mt-1" name="atendente2" id="atendente2" form="statusform">
+                        <option value="Juliano">Juliano</option>
+                        <option value="Anderson">Anderson</option>
+                        <option value="Anelise">Anelise</option>
+                        <option value="Gustavo">Gustavo</option>
+                    </select>
                     <label for="conclusao">Conclusão do atendimento:</label>
                     <textarea class="form-control mt-1" rows='4' type="text" id="conclusao" placeholder="Detalhes sobre o que foi feito"></textarea>
                     <div class="modal-footer">

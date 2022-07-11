@@ -13,10 +13,12 @@ onload = async () => {
     btnff.addEventListener("click", async () => {
 
         const id = document.getElementById("idf2").value
+        const atendente2 = document.getElementById("atendente2").value
         const conclusao = document.getElementById("conclusao").value
 
         const body = new FormData()
         body.append('idf2', id)
+        body.append('atendente2', atendente2)
         body.append('conclusao', conclusao)
 
         const response = await fetch(`${baseUrl}finalizar.php`, {

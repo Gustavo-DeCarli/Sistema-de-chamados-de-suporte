@@ -74,7 +74,7 @@ if($_SESSION['nome'] != 'ADMINISTRATOR'){
           </div>
         </form>
       </nav>
-      <table id='chamados' class='table bg-light'>
+      <table id='chamados' class='table align-middle bg-light'>
         <thead>
           <tr class='text-center'>
             <th scope='col'>ID</th>
