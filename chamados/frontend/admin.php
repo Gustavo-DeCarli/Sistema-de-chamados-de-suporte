@@ -4,7 +4,7 @@ if (isset($_POST['logout'])) {
   session_destroy();
   header('Location: ../index.php');
 }
-if($_SESSION['nome'] != 'ADMINISTRATOR'){
+if ($_SESSION['nome'] != 'ADMINISTRATOR') {
   header('Location: user.php');
 }
 ?>
@@ -37,7 +37,7 @@ if($_SESSION['nome'] != 'ADMINISTRATOR'){
           </li>
           <li class="nav-item px-2">
             <form method="POST">
-            <button type="submit" name='logout' class="btn btn-danger p-1 mt-1 px-2">Logout</button>
+              <button type="submit" name='logout' class="btn btn-danger p-1 mt-1 px-2">Logout</button>
             </form>
           </li>
         </ul>
@@ -58,13 +58,13 @@ if($_SESSION['nome'] != 'ADMINISTRATOR'){
             </select>
           </div>
           <div class="ms-2 col-auto">
-            <a >De:</a>
+            <a>De:</a>
           </div>
           <div class="ms-2 col-auto">
             <input class="form-control" name="data" type="date">
           </div>
           <div class="ms-2 col-auto">
-            <a >Até:</a>
+            <a>Até:</a>
           </div>
           <div class="ms-2 col-auto">
             <input class="form-control" name="data2" type="date">
@@ -91,22 +91,31 @@ if($_SESSION['nome'] != 'ADMINISTRATOR'){
         <tbody>
           <?php
           require "../backend/conn.php";
+          if (isset($_GET['pagina'])) {
+            $pagina = $_GET['pagina'];
+            $pc = $pagina;
+          } else {
+            $pc = 1;
+          }
+          $total_reg = "10";
+          $inicio = $pc - 1;
+          $inicio = $inicio * $total_reg;
           $connection = DB::getInstance();
           if (isset($_POST['data']) or isset($_POST['status']) or isset($_POST['data2'])) {
             $data = $_POST['data'];
             $data2 = $_POST['data2'];
             $status = $_POST['status'];
             if ($data != '' and $status != '' and $data2 != '') {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' AND status = '$status' ORDER BY id DESC");
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' AND status = '$status' ORDER BY id DESC LIMIT $inicio,$total_reg");
             } elseif ($data != '' and $data2 != '' and $status == '') {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' ORDER BY id DESC");
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE data BETWEEN '$data 00:00:00' AND '$data2 23:59:00' ORDER BY id DESC LIMIT $inicio,$total_reg");
             } elseif ($data == '' and $status != '') {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE status = '$status' ORDER BY id DESC");
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados WHERE status = '$status' ORDER BY id DESC LIMIT $inicio,$total_reg");
             } else {
-              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
+              $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC LIMIT $inicio,$total_reg");
             }
           } else {
-            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC");
+            $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data, DATE_FORMAT(previsao, '%d/%m/%Y') as previsao from chamados ORDER BY id DESC LIMIT $inicio,$total_reg");
           }
           $stmt->setFetchMode(PDO::FETCH_ASSOC);
           $dados11 = $stmt->fetchAll();
@@ -128,6 +137,22 @@ if($_SESSION['nome'] != 'ADMINISTRATOR'){
           }
           ?>
         </tbody>
+        <tfoot>
+        <tr>
+          <?php
+            $tr = $stmt->rowCount();
+            $tp = $tr / $total_reg;
+            $anterior = $pc - 1;
+            $proximo = $pc + 1;
+            if ($pc > 1) {
+              echo "<td colspan='9'><a class='btn btn-success' href='?pagina=$anterior'>Anterior</a></td>";
+            }
+            if ($pc < $tr) {
+              echo "<td colspan='9'><a class='btn btn-success' href='?pagina=$proximo'>Próxima</a></td>";
+            }
+            ?>
+            <tr>
+        </tfoot>
       </table>
     </div>
   </div>

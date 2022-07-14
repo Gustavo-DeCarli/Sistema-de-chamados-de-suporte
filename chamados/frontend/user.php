@@ -61,8 +61,17 @@ if (isset($_POST['logout'])) {
             <tbody>
                 <?php
                 require "../backend/conn.php";
+                if (isset($_GET['pagina'])) {
+                    $pagina = $_GET['pagina'];
+                    $pc = $pagina;
+                } else {
+                    $pc = 1;
+                }
+                $total_reg = "10";
+                $inicio = $pc - 1;
+                $inicio = $inicio * $total_reg;
                 $connection = DB::getInstance();
-                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where nome='$nome' ORDER BY id DESC");
+                $stmt = $connection->query("SELECT *, DATE_FORMAT(data, '%d/%m/%Y %h:%i') as data from chamados where nome='$nome' ORDER BY id DESC LIMIT $inicio,$total_reg");
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 $dados11 = $stmt->fetchAll();
                 foreach ($dados11 as $dados111) {
@@ -80,6 +89,22 @@ if (isset($_POST['logout'])) {
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <?php
+                    $tr = $stmt->rowCount();
+                    $tp = $tr / $total_reg;
+                    $anterior = $pc - 1;
+                    $proximo = $pc + 1;
+                    if ($pc > 1) {
+                        echo "<td colspan='9'><a class='btn btn-success' href='?pagina=$anterior'>Anterior</a></td>";
+                    }
+                    if ($pc < $tr) {
+                        echo "<td colspan='9'><a class='btn btn-success' href='?pagina=$proximo'>Próxima</a></td>";
+                    }
+                    ?>
+                <tr>
+            </tfoot>
         </table>
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
             <div class="modal-dialog">
